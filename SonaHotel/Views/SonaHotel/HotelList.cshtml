@@ -1,0 +1,52 @@
+﻿@model List<BookingHotelListViewModel.Hotel>
+@{
+    ViewData["Title"] = "HotelList";
+    Layout = "~/Views/Shared/_SonaLayout.cshtml";
+}
+
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="@item.property.photoUrls[0].Replace("square60", "square1080")" style="max-width:100%;height:auto;" alt="">
+                        <div class="ri-text">
+                            <h4>@item.property.name</h4>
+                            <h3>@item.property.reviewCount $<span>/@item.property.currency</span> </h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Puan:</td>
+                                        <td>@item.property.reviewScore</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Sınıf:</td>
+                                        <td>@item.property.reviewScoreWord</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Giriş Tarihi:</td>
+                                        <td>@item.property.checkinDate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Çıkış Tarihi:</td>
+                                        <td>@item.property.checkoutDate</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form method="post" asp-action="GetHotelDetail">
+                                <input type="hidden" name="hotelID" value="@item.hotel_id" />
+                                <input type="hidden" name="arrivalDate" value="@item.property.checkinDate" />
+                                <input type="hidden" name="departureDate" value="@item.property.checkoutDate" />
+                                <button class="btn primary-btn">Detaylar >></button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

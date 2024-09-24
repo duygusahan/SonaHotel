@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+@await Component.InvokeAsync("_HeadComponentPartial")
+
+<body>
+    @await Component.InvokeAsync("_NavbarComponentPartial")
+    <!-- Header End -->
+    <!-- Hero Section Begin -->
+   
+    @RenderBody()
+
+    @await Component.InvokeAsync("_FooterComponentPartial")
+    <!-- Footer Section End -->
+    <!-- Search model Begin -->
+    @await Component.InvokeAsync("_SearchComponentPartial")
+    <!-- Search model end -->
+    <!-- Js Plugins -->
+    @await Component.InvokeAsync("_ScriptsComponentPartial")
+</body>
+
+</html>
